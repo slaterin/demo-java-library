@@ -2,7 +2,8 @@ name: Trigger JitPack Build
 
 on:
   push:
-    tag: *
+    tags: 
+      - '*'
 
 jobs:
   build:
