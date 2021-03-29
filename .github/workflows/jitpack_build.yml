@@ -1,0 +1,16 @@
+name: Trigger JitPack Build
+
+on:
+  push:
+    tag: *
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Trigger Build in JitPack
+      run: curl https://jitpack.io/com/github/slaterin/demo-java-library/master
+      
