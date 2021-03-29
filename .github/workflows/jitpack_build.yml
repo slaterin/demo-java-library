@@ -24,3 +24,4 @@ jobs:
           let count+=1
           sleep 10
         done
+        if [[ $count -gt 6 ]]; then exit 1; fi 
