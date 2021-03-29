@@ -16,9 +16,11 @@ jobs:
       run: |
         PACKAGES_URL="https://jitpack.io/com/github/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}/"
         curl -sS --max-time 900 ${PACKAGES_URL}
+        # Try the URL 6 times, fail if only one file is found i.e the build.log 
         count=1
-        until [[ $count -gt 12 ]] || [[ $( curl -sS ${PACKAGES_URL} | wc -l | xargs) -gt 1 ]]; do
-          echo "Attempt ${count}/12"
+        until [[ $count -gt 6 ]] || [[ $( curl -sS ${PACKAGES_URL} | wc -l | xargs) -lt 1 ]]; do
+          echo "Attempt ${count}/6"
           curl -sS ${PACKAGES_URL}
           let count+=1
+          sleep 10
         done
