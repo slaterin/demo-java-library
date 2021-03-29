@@ -27,5 +27,6 @@ jobs:
         if [[ $count -gt 6 ]]; then 
           exit 1
         else
-          echo -e "Files available:\n ${FILES}"  
+          echo "Files available:"
+          echo "${FILES}"  
         fi 
