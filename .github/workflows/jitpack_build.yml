@@ -13,4 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Trigger Build in JitPack
-      run: curl https://jitpack.io/com/github/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}
+      run: |
+        PACKAGES="https://jitpack.io/com/github/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}"
+        curl --max-time 900 ${PACKAGES}
+        count=1
+        until [[ $count == 12 ]] || [[ $( curl -sS ${PACKAGES} | wc -l | xargs) -gt 1 ]]; do
+          echo "Attempt ${count}/12"
+          let count+=1
+        done
