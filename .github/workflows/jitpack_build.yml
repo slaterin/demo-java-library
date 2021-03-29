@@ -19,5 +19,6 @@ jobs:
         count=1
         until [[ $count -gt 12 ]] || [[ $( curl -sS ${PACKAGES} | wc -l | xargs) -gt 1 ]]; do
           echo "Attempt ${count}/12"
+          curl -sS ${PACKAGES}
           let count+=1
         done
