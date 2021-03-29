@@ -16,4 +16,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Trigger Build in JitPack
-      run: curl https://jitpack.io/com/github/${ORG}/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}
+      run: echo "curl https://jitpack.io/com/github/${ORG}/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}"
