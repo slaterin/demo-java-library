@@ -15,6 +15,7 @@ jobs:
     - name: Trigger Build in JitPack
       run: |
         PACKAGES_URL="https://jitpack.io/com/github/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}/"
+        echo "Triggering JitPack build"
         
         echo "::group::Files Available"
         curl -w "\n" -sS --max-time 900 ${PACKAGES_URL}
