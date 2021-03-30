@@ -22,7 +22,9 @@ jobs:
         until [[ $count -gt 3 ]] || [[ ${FILE_COUNT:-0} -gt 1 ]]; do
           echo "Attempt ${count}/3"
           FILES=$(curl -sS --max-time 900 ${PACKAGES_URL})
+          echo "FILES: $FILES"
           FILE_COUNT=$(echo ${FILES} | wc -l | xargs)
+          echo "COUNT: $FILE_COUNT"
           let count+=1
           sleep 5
         done
@@ -31,6 +33,6 @@ jobs:
         echo ${FILES}
         echo "::endgroup::"
         
-        if [[ ! ${FILE_COUNT} -gt 1 ]] || [[ $count -gt 3 ]]; then 
+        if [[ $count -gt 3 ]]; then 
           exit 1 
         fi
