@@ -19,9 +19,9 @@ jobs:
         
         # Try the URL 3 times before failing
         count=1
-        until [[ $count -gt 3 ]] || [[ $( curl -sS ${PACKAGES_URL} | wc -l | xargs) -gt 1 ]]; do
+        until [[ $count -gt 3 ]] || [[ "${FILES}" -gt 1 ]]; do
           echo "Attempt ${count}/3"
-          FILES=$(curl -w "\n" -sS --max-time 900 ${PACKAGES_URL})
+          FILES=$(curl -sS --max-time 900 ${PACKAGES_URL} | wc -l | xargs)
           let count+=1
           sleep 5
         done
@@ -34,4 +34,4 @@ jobs:
           exit 1 
         fi 
 
-        if [[ $count -gt 3 ]]; then exit 1; fi 
+        if [[ $count -gt 3 ]]; then exit 1; fi
