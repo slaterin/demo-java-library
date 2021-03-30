@@ -31,8 +31,6 @@ jobs:
         echo ${FILES}
         echo "::endgroup::"
         
-        if [[ ! $( curl -sS ${PACKAGES_URL} | wc -l | xargs) -gt 1 ]] || [[ $count -gt 3 ]]; then 
+        if [[ ! ${FILE_COUNT} -gt 1 ]] || [[ $count -gt 3 ]]; then 
           exit 1 
-        fi 
-
-        if [[ $count -gt 3 ]]; then exit 1; fi
+        fi
