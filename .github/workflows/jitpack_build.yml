@@ -17,7 +17,7 @@ jobs:
         PACKAGES_URL="https://jitpack.io/com/github/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}/"
         
         echo "::group::Files found"
-        curl -sS --max-time 900 ${PACKAGES_URL}
+        curl -w "\n" -sS --max-time 900 ${PACKAGES_URL}
         echo "::endgroup::"
 
         # Try the URL 3 times, fail if only one file is found i.e the build.log 
