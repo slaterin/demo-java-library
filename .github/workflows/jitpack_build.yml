@@ -15,7 +15,11 @@ jobs:
     - name: Trigger Build in JitPack
       run: |
         PACKAGES_URL="https://jitpack.io/com/github/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}/"
+        
+        echo "::group::Files found"
         curl -sS --max-time 900 ${PACKAGES_URL}
+        echo "::endgroup::"
+
         # Try the URL 3 times, fail if only one file is found i.e the build.log 
         count=1
         until [[ $count -gt 3 ]] || [[ $( curl -sS ${PACKAGES_URL} | wc -l | xargs) -gt 1 ]]; do
@@ -24,10 +28,6 @@ jobs:
           let count+=1
           sleep 10
         done
-        
-        echo "::group::Files found"
-        echo "hello"
-        echo "::endgroup::"
         
         if [[ $count -gt 3 ]]; then 
           exit 1 
