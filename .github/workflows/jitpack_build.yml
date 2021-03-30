@@ -23,7 +23,7 @@ jobs:
           echo "Attempt ${count}/3"
           FILES=$(curl -sS --max-time 900 ${PACKAGES_URL})
           echo "FILES: $FILES"
-          FILE_COUNT=$(echo ${FILES} | wc -l | xargs)
+          FILE_COUNT=$(echo ${FILES} | wc -w | xargs)
           echo "COUNT: $FILE_COUNT"
           let count+=1
           sleep 5
