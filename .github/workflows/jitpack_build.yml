@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: Trigger Build in JitPack
       run: |
         PACKAGES_URL="https://jitpack.io/com/github/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}/"
