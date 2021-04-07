@@ -32,7 +32,7 @@ jobs:
         done
         
         echo "::group::Files Available"
-        echo ${FILES}
+        cat ${PACKAGES_FILE}
         echo "::endgroup::"
         
         if [[ $count -gt 3 ]]; then 
