@@ -26,7 +26,7 @@ jobs:
           STATUS=$(curl -s -o packages.txt -w "%{http_code}" --max-time 900 ${PACKAGES_URL})
           
           let count+=1
-          if [[ "${STATUS}" -qt 399 ]]; then
+          if [[ "${STATUS}" -gt 399 ]]; then
             sleep 30
           fi
 
